@@ -1,0 +1,175 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import "tailwindcss";
+
+@theme{
+    --default-font-family: 'Poppins', serif;
+    --breakpoint-400px: 400px;
+    --breakpoint-350px: 350px;
+    --breakpoint-300px: 300px;
+}
+
+* {
+    @apply transition-colors duration-300 ease-in
+}
+
+html, body{
+    @apply h-full
+}
+
+body.dark .whiteBtn{
+    @apply block;
+}
+
+body.dark .blackBtn{
+    @apply hidden;
+}
+
+body.light .whiteBtn{
+    @apply hidden;
+}
+
+body.light .blackBtn{
+    @apply block;
+}
+
+body.dark {
+    @apply bg-gray-950 text-white;
+}
+
+body.light .headline {
+    @apply bg-gray-950 text-white;
+}
+
+body.light .react-link{
+    @apply border-black border-[1px] hover:text-white hover:bg-black;
+}
+
+body.dark .react-link{
+    @apply border-white border-[1px] hover:text-black hover:bg-white;
+}
+
+body.light .react-link.special-link{
+    @apply  text-white bg-black hover:text-[rgba(255,255,255,.9)] hover:bg-[rgba(0,0,0,.8)];
+}
+
+body.dark .react-link.special-link{
+    @apply  text-black bg-white hover:text-[rgba(255,255,255,.9)] hover:bg-[rgba(0,0,0,.8)];
+}
+
+body.dark * {
+    @apply bg-gray-950 text-white;
+}
+
+body.light thead > tr > th ,
+body.light .head-line,
+body.light .head-line > *,
+body.light .head-line i {
+    @apply bg-[#2c2c2c] text-white;
+}
+
+body.dark thead > tr > th ,
+body.dark .head-line,
+body.dark .head-line > *,
+body.dark .head-line i {
+    @apply bg-gray-600 text-white;
+}
+
+
+body.light, body.light * {
+    @apply bg-[#e0e0e0] text-black;
+}
+
+header,
+section,
+footer {
+    @apply lg:px-16 md:px-10 px-4 w-full max-w-screen;
+}
+
+button:not(.excluse) {
+    @apply text-sm cursor-pointer rounded-md;
+}
+
+button{
+    @apply outline-1;
+}
+
+.btn{
+    @apply py-2 px-4 border-[1px];
+}
+
+.btn.dark{
+    @apply border-gray-700 bg-gray-800 text-white;
+}
+
+.btn.excluse{
+    @apply border-[2px] hover:bg-gray-200 focus:outline-none focus:ring-blue-500 focus:ring-2 focus:ring-offset-2;
+}
+
+button:focus {
+    @apply outline-none ring-2 ring-offset-2 ring-blue-500;
+}
+
+button:hover {
+    @apply bg-gray-200;
+}
+
+body.dark button:hover {
+    @apply bg-gray-800;
+}
+
+input:not(.excluse),
+textarea {
+    @apply border border-gray-300 rounded-md py-2 px-4;
+}
+
+input:focus,
+textarea:focus {
+    @apply outline-none ring-2 ring-offset-2 ring-blue-500;
+}
+
+body.dark input,
+body.dark textarea {
+    @apply border-gray-700 bg-gray-800 text-white;
+}
+
+body.dark input[type='submit']{
+    @apply hover:text-black;
+}
+
+body.light input:not(.exclusive),
+body.light textarea:not(.exclusive),
+body.light input[type='submit']:not(.exclusive),
+body.light input[type='file']:not(.exclusive),
+body.light button.icon, 
+body.light button.icon > *{
+    @apply bg-[#2c2c2c] text-white;
+}
+
+body.light input[type='submit']{
+    @apply hover:text-black;
+}
+
+body.dark input:focus,
+body.dark textarea:focus {
+    @apply ring-blue-300;
+}
+
+body.dark .set-custom-scroll::-webkit-scrollbar{
+    @apply w-2 bg-slate-500 rounded-md;
+}
+
+body.dark .set-custom-scroll::-webkit-scrollbar-thumb{
+    @apply bg-slate-700 rounded-md cursor-pointer;
+}
+
+body.light .set-custom-scroll::-webkit-scrollbar{
+    @apply w-2 bg-[rgba(0,0,0,.4)] rounded-md;
+}
+
+body.light .set-custom-scroll::-webkit-scrollbar-thumb{
+    @apply bg-[rgba(0,0,0,.5)] rounded-md cursor-pointer;
+}
+
+.emoji{
+    @apply size-1 rounded-full bg-red-500 block;
+}
