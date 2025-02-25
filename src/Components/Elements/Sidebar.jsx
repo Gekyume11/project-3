@@ -23,7 +23,7 @@ const Sidebar = ({ onToggle }) => {
             }}
         >
             <div className='w-full'>
-                <div className='py-2 flex border-b-1 head-line justify-between items-center w-full'>
+                <div className='py-2 flex border-b-1 justify-between items-center w-full'>
                     <p className='ps-3.5 text-lg'>Sidebar</p>
                     <span className='w-10 grid place-items-center cursor-pointer' onClick={toggleSidebar}>
                         {isOpen ? (

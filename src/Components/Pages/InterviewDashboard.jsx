@@ -59,7 +59,7 @@ const InterviewDashboard = () => {
 
   const statusColors = {
     done: "green",
-    pending: "#B2651B",
+    pending: "orange",
     rejected: "#FF0000",
   };
 
@@ -138,13 +138,13 @@ const InterviewDashboard = () => {
       <AnimatePresence mode="wait">
         {detailBox && !addFollowUp && (
           <motion.div
-            className="absolute px-4 inset-0 size-full z-1 grid place-items-center"
+            className="absolute overflow-auto px-4 inset-0 size-full z-1 grid place-items-center"
             initial={{ y: "-100%" }}
             animate={{ y: "0" }}
             exit={{ y: "100%" }}
             transition={{ duration: 0.5, ease: [1, 0.02, 0.2, 0.76] }}
           >
-            <div className="rounded-md flex flex-col gap-2 overflow-hidden size-full max-w-100 max-h-110 outline">
+            <div className="rounded-md flex flex-col gap-2 size-full max-w-100 max-h-110 outline">
               <div className="flex p-4 w-full outline h-fit justify-between items-center">
                 <h1>{students[msgIndex]?.studentName}</h1>
                 <span onClick={() => setDetailBox(false)}>
@@ -222,20 +222,15 @@ const InterviewDashboard = () => {
               </div>
 
               <div className="mt-4">
+                <textarea
+                  className="outline w-full resize-none p-1 set-custom-scroll"
+                  placeholder="Enter Follow-up"
+                ></textarea>
                 <input
                   type="date"
                   className="outline w-full mb-2 p-1"
                   placeholder="Date"
                 />
-                <input
-                  type="text"
-                  className="outline w-full mb-2 p-1"
-                  placeholder="Faculty Name"
-                />
-                <textarea
-                  className="outline w-full resize-none p-1 set-custom-scroll"
-                  placeholder="Enter Follow-up"
-                ></textarea>
                 <button
                   type="submit"
                   onClick={() => {

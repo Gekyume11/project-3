@@ -59,8 +59,8 @@ const Header = () => {
                             <motion.path key={index} d={d} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"
                                 initial={false}
                                 animate={{
-                                    rotate: isDarkMode ? '360deg' : '-360deg',
-                                    opacity: isDarkMode ? 0 : 1,
+                                    rotate: !isDarkMode ? '360deg' : '-360deg',
+                                    opacity: !isDarkMode ? 0 : 1,
                                     stroke: isDarkMode ? 'white' : 'black'
                                 }}
                                 transition={{
@@ -70,17 +70,17 @@ const Header = () => {
                             />
                         ))}
                         <motion.path
-                            d={isDarkMode ? moonPath : sunPath}
+                            d={!isDarkMode ? moonPath : sunPath}
                             strokeWidth="1.5"
                             strokeLinecap="round"
                             strokeLinejoin="round"
                             initial={false}
                             animate={{
-                                d: isDarkMode ? moonPath : sunPath,
+                                d: !isDarkMode ? moonPath : sunPath,
                                 stroke: isDarkMode ? 'white' : 'black',
-                                y: isDarkMode ? 3 : 0,
-                                x: isDarkMode ? 2 : 0,
-                                rotate: isDarkMode ? '360deg' : 0,
+                                y: !isDarkMode ? 3 : 0,
+                                x: !isDarkMode ? 2 : 0,
+                                rotate: !isDarkMode ? '360deg' : 0,
                             }}
                             transition={{
                                 duration: 1,

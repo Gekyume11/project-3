@@ -128,7 +128,7 @@ const StudentDashboard = () => {
             </button>
           </div>
         </div>
-        <div className="grid 400px:grid-cols-2 gap-3">
+        <div className="grid md:grid-cols-3 gap-3">
           <select
             name="studentArea"
             className="outline rounded-sm py-1 px-2"
@@ -183,6 +183,33 @@ const StudentDashboard = () => {
               UI / UX / Web Designer
             </option>
           </select>
+          <select
+            name="studentArea"
+            className="outline md:col-span-1 300px:col-span-2 rounded-sm py-1 px-2"
+            id="studentArea"
+          >
+            <option disabled={true} defaultChecked value="">
+              Select a Faculty
+            </option>
+            <option className="text-md" value="facultyName">
+              Albert Einstein
+            </option>
+            <option className="text-md" value="facultyName">
+              Oppenheimer
+            </option>
+            <option className="text-md" value="facultyName">
+              Neil Tyson
+            </option>
+            <option className="text-md" value="facultyName">
+              Elon Musk
+            </option>
+            <option className="text-md" value="facultyName">
+              Stephen Hawking
+            </option>
+            <option className="text-md" value="facultyName">
+              Allah hu Akhbar
+            </option>
+          </select>
         </div>
       </div>
 
@@ -206,7 +233,7 @@ const StudentDashboard = () => {
                 colSpan={2}
                 className="outline outline-gray-400 text-sm px-6 py-3 text-left font-medium text-gray-500 uppercase tracking-wider"
               >
-                Faculty name
+                Company name
               </th>
               <th className="outline outline-gray-400 text-sm px-6 py-3 text-center font-medium text-gray-500 uppercase tracking-wider">
                 status & info
@@ -215,7 +242,7 @@ const StudentDashboard = () => {
           </thead>
           <tbody className="">
             {students.map(
-              ({ studentName, course, studentStatus, facultyName }, i) => (
+              ({ studentName, course, studentStatus, companyName }, i) => (
                 <tr key={i}>
                   <td
                     colSpan={2}
@@ -233,7 +260,7 @@ const StudentDashboard = () => {
                     colSpan={2}
                     className="px-6 py-4 outline outline-gray-400 text-sm whitespace-nowrap"
                   >
-                    {facultyName}
+                    {companyName}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap outline outline-gray-400 text-sm flex justify-center items-center gap-2">
                     <span
@@ -260,7 +287,7 @@ const StudentDashboard = () => {
       <AnimatePresence mode="wait">
         {addStudentBox && (
           <motion.div
-            className="absolute px-4 inset-0 size-full z-1 grid place-items-center"
+            className="absolute excluse 300px:px-4 inset-0 size-full bg-[rgba(0,0,0,.5)] z-1 grid place-items-center"
             initial={{
               y: "-100%",
             }}
@@ -275,59 +302,46 @@ const StudentDashboard = () => {
               ease: [1, 0.02, 0.2, 0.76],
             }}
           >
-            <div className="rounded-md w-full max-w-100 outline">
+            <div className="rounded-md w-full max-w-240 outline">
               <div className="p-4 border-b-[1px] head-line overflow-x-hidden flex justify-between items-center">
                 <h1>Add a Student</h1>
                 <span onClick={() => setAddStudentBox(false)}>
-                  <i className="ri-close-large-line cursor-pointer"></i>
+                  <i className="ri-close-large-line cursor-pointer py-2 px-2 rounded-md"></i>
                 </span>
               </div>
-              <div className="py-4 px-3">
-                <div className="grid gap-4 pe-4 h-full max-h-100 overflow-x-hidden overflow-y-auto set-custom-scroll p-2">
+              <div className="py-4 300px:px-3">
+                <div className="grid 300px:grid-cols-2 gap-4 300px:pe-4 h-full max-h-200 overflow-x-hidden overflow-y-auto set-custom-scroll p-2">
                   <input
-                    className="outline inline-block w-full exclusive"
+                    className="outline inline overflow-hidden w-full exclusive"
                     type="text"
                     placeholder="Student Name"
                   />
                   <input
-                    className="outline inline-block w-full exclusive"
+                    className="outline inline overflow-hidden w-full exclusive"
                     type="text"
                     placeholder="Course"
                   />
                   <input
-                    className="outline inline-block w-full exclusive"
+                    className="outline inline overflow-hidden w-full exclusive"
                     type="text"
                     placeholder="Education"
                   />
                   <input
-                    className="outline inline-block w-full exclusive"
-                    type="tel"
-                    placeholder="Contact no."
-                  />
-                  <input
-                    className="outline inline-block w-full exclusive"
+                    className="outline inline overflow-hidden w-full exclusive"
                     type="tel"
                     placeholder="Student's Email"
                   />
-                  <div className="px-4 outline rounded-md pt-2 pb-4 grid gap-2">
-                    <h3 className="opacity-50">Add a Note</h3>
-                    <textarea
-                      name="Add a Note"
-                      className="exclusive resize-none block outline text-sm outline-[rgba(0,0,0,.4)] w-full h-24"
-                      id="studentNote"
-                    ></textarea>
-                  </div>
-                  <div className="px-4 outline rounded-md pt-2 pb-4 grid gap-2">
-                    <h3 className="opacity-50">Upload Student's Resume</h3>
-                    <input
-                      className="exclusive w-full outline cursor-pointer outline-[rgba(0,0,0,.4)]"
-                      type="file"
-                      name="resume"
-                      accept="application/pdf"
-                      id="studentResume"
-                    />
-                  </div>
-                  <div className="px-4 outline rounded-md pt-2 pb-4 grid gap-2">
+                  <input
+                    className="outline inline overflow-hidden w-full exclusive"
+                    type="text"
+                    placeholder="Faculty name"
+                  />
+                  <input
+                    className="outline inline overflow-hidden w-full exclusive"
+                    type="tel"
+                    placeholder="Contact no."
+                  />
+                  <div className="px-4 outline overflow-hidden rounded-md pt-2 pb-4 grid gap-2">
                     <h3 className="opacity-50">Student's Status</h3>
                     <div className="flex gap-3 items-center">
                       <input
@@ -338,7 +352,7 @@ const StudentDashboard = () => {
                       />
                       <label htmlFor="activeStatus">Active</label>
                     </div>
-                    <div className="flex gap-3 items-center">
+                    <div className="flex gap-3 overflow-hidden items-center">
                       <input
                         type="radio"
                         className="w-fit"
@@ -348,7 +362,26 @@ const StudentDashboard = () => {
                       <label htmlFor="notActiveStatus">Not-Active</label>
                     </div>
                   </div>
-                  <div className="px-4 outline rounded-md pt-2 pb-4 grid gap-2">
+                  <div className="px-4 outline overflow-hidden rounded-md pt-2 pb-4 grid gap-2">
+                    <h3 className="opacity-50">Add a Note</h3>
+                    <textarea
+                      name="Add a Note"
+                      className="exclusive resize-none block outline text-sm outline-[rgba(0,0,0,.4)] w-full h-24"
+                      id="studentNote"
+                    ></textarea>
+                  </div>
+
+                  <div className="px-4 outline overflow-hidden rounded-md pt-2 pb-4 grid gap-2">
+                    <h3 className="opacity-50">Upload Student's Resume</h3>
+                    <input
+                      className="exclusive w-full outline cursor-pointer outline-[rgba(0,0,0,.4)]"
+                      type="file"
+                      name="resume"
+                      accept="application/pdf"
+                      id="studentResume"
+                    />
+                  </div>
+                  <div className="px-4 outline overflow-hidden rounded-md pt-2 pb-4 grid gap-2">
                     <h3 className="opacity-50">Select a Area</h3>
                     <select
                       name="studentArea"
@@ -378,7 +411,7 @@ const StudentDashboard = () => {
                       </option>
                     </select>
                   </div>
-                  <div className="px-4 outline rounded-md pt-2 pb-4 grid gap-2">
+                  <div className="px-4 outline overflow-hidden rounded-md pt-2 pb-4 grid gap-2">
                     <h3 className="opacity-50">Experience</h3>
                     <select
                       name="studentArea"
@@ -389,7 +422,7 @@ const StudentDashboard = () => {
                         Select any one option
                       </option>
                       <option className="text-md" value="0m">
-                        No-expreience {"(Fresher)"}
+                        Fresher
                       </option>
                       <option className="text-md" value="0-1m">
                         0 - 1 month
@@ -420,20 +453,16 @@ const StudentDashboard = () => {
                       </option>
                     </select>
                   </div>
+
                   <input
-                    className="outline inline-block w-full exclusive"
-                    type="text"
-                    placeholder="Faculty name"
-                  />
-                  <input
-                    className="outline inline-block w-full exclusive"
+                    className="outline inline overflow-hidden w-full exclusive"
                     type="date"
                     placeholder="Date"
                   />
                   <input
                     type="submit"
                     value="Submit"
-                    className="py-2 exclusive"
+                    className="py-2 300px:col-span-2"
                   />
                 </div>
               </div>
@@ -457,44 +486,77 @@ const StudentDashboard = () => {
               ease: [1, 0.02, 0.2, 0.76],
             }}
           >
-            <div className="rounded-md w-full max-w-100 outline">
+            <div className="rounded-md w-full overflow-auto max-w-240 outline">
               <div className="p-4 border-b-[1px] head-line flex justify-between items-center">
                 <h1 className="tracking-[1px]">
                   {students[msgIndex].studentName}
                 </h1>
                 <span onClick={() => setDetailBox(false)}>
-                  <i className="ri-close-large-line cursor-pointer"></i>
+                  <i className="ri-close-large-line p-2 rounded-md cursor-pointer"></i>
                 </span>
               </div>
               <div className="py-4 px-2">
                 <div className="px-4 h-full max-h-100 overflow-y-auto set-custom-scroll p-2">
-                  <div className="space-y-4 capitalize">
+                  <div className="grid gap-4 sm:grid-cols-4 capitalize">
                     <p className="py-2 outline px-4 rounded-md flex flex-col text-sm">
                       Course:{" "}
                       <span className="tracking-[1px] text-base">
                         {students[msgIndex].course}
                       </span>
                     </p>
+
+                    <p className="py-2 sm:col-span-2 outline px-4 rounded-md flex flex-col text-sm">
+                      Education:{" "}
+                      <span className="tracking-[1px] text-base">
+                        {students[msgIndex].Education}
+                      </span>
+                    </p>
+
                     <p className="py-2 outline px-4 rounded-md flex flex-col text-sm">
+                      Area:{" "}
+                      <span className="tracking-[1px] text-base">
+                        {students[msgIndex].studentArea}
+                      </span>
+                    </p>
+                    
+                    <p className="py-2 sm:col-span-2 outline px-4 rounded-md flex flex-col text-sm">
+                      Contact:
+                      <span className="tracking-[1px] sm:text-base">
+                        {students[msgIndex].contact}
+                      </span>
+                    </p>
+
+                    
+                    
+
+                    <p className="py-2 sm:col-span-2 outline px-4 rounded-md flex flex-col text-sm">
+                      Faculty:{" "}
+                      <span className="tracking-[1px] text-base">
+                        {students[msgIndex].facultyName}
+                      </span>
+                    </p>
+
+                    <p className="py-2 sm:col-span-4 outline px-4 rounded-md flex flex-col text-sm">
                       Email:{" "}
                       <span className="tracking-[1px] text-base normal-case">
                         {students[msgIndex].email}
                       </span>
                     </p>
+
+                    
+
                     <p className="py-2 outline px-4 rounded-md flex flex-col text-sm">
-                      Contact:{" "}
+                      Experience:{" "}
                       <span className="tracking-[1px] text-base">
-                        {students[msgIndex].contact}
+                        {students[msgIndex].experience}
                       </span>
                     </p>
-                    <div className="py-2 outline px-4 rounded-md flex flex-col text-sm">
-                      <p>Notes:</p>
-                      <ul className="space-y-1">
-                        {students[msgIndex].notes.map((note, index) => (
-                          <li key={index}>- {note}</li>
-                        ))}
-                      </ul>
-                    </div>
+                    <p className="py-2 outline px-4 rounded-md flex flex-col text-sm">
+                      Date:{" "}
+                      <span className="tracking-[1px] text-base">
+                        {students[msgIndex].date}
+                      </span>
+                    </p>
                     <p className="py-2 outline px-4 rounded-md text-sm">
                       Resume:{" "}
                       <a
@@ -506,41 +568,20 @@ const StudentDashboard = () => {
                       </a>
                     </p>
                     <p className="py-2 outline px-4 rounded-md flex flex-col text-sm">
-                      Education:{" "}
-                      <span className="tracking-[1px] text-base">
-                        {students[msgIndex].Education}
-                      </span>
-                    </p>
-                    <p className="py-2 outline px-4 rounded-md flex flex-col text-sm">
                       Status:{" "}
                       <span className="tracking-[1px] text-base">
                         {students[msgIndex].studentStatus}
                       </span>
                     </p>
-                    <p className="py-2 outline px-4 rounded-md flex flex-col text-sm">
-                      Area:{" "}
-                      <span className="tracking-[1px] text-base">
-                        {students[msgIndex].studentArea}
-                      </span>
-                    </p>
-                    <p className="py-2 outline px-4 rounded-md flex flex-col text-sm">
-                      Experience:{" "}
-                      <span className="tracking-[1px] text-base">
-                        {students[msgIndex].experience}
-                      </span>
-                    </p>
-                    <p className="py-2 outline px-4 rounded-md flex flex-col text-sm">
-                      Faculty:{" "}
-                      <span className="tracking-[1px] text-base">
-                        {students[msgIndex].facultyName}
-                      </span>
-                    </p>
-                    <p className="py-2 outline px-4 rounded-md flex flex-col text-sm">
-                      Date:{" "}
-                      <span className="tracking-[1px] text-base">
-                        {students[msgIndex].date}
-                      </span>
-                    </p>
+
+                    <div className="py-2 sm:col-span-4 outline px-4 rounded-md flex flex-col text-sm">
+                      <p>Notes:</p>
+                      <ul className="space-y-1">
+                        {students[msgIndex].notes.map((note, index) => (
+                          <li key={index}>- {note}</li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
                 </div>
               </div>
