@@ -6,7 +6,7 @@ const Header = () => {
 
     const navigate = useNavigate()
 
-    const [loggedInUser, setLoggedInUser] = useState(null)
+    const [loggedInUser, setLoggedInUser] = useState('UserName')
     const [userDialogBox, setUserDialogBox] = useState(false)
     const [isDarkMode, setIsDarkMode] = useState(localStorage.getItem('selectedTheme') === 'dark');
 

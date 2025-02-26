@@ -5,12 +5,13 @@ const StudentDashboard = () => {
   const [addStudentBox, setAddStudentBox] = useState(false);
   const [detailBox, setDetailBox] = useState(false);
   const [msgIndex, setMsgIndex] = useState(null);
+  const [editStudentBox, setEditStudentBox] = useState(false);
 
   const showStudentDetail = (index) => {
     setMsgIndex(index), setDetailBox(true);
   };
 
-  const students = [
+  const [students, setStudents] = useState([
     {
       studentName: "Dhruv Harsoda",
       course: "Full Stack",
@@ -104,7 +105,13 @@ const StudentDashboard = () => {
       facultyName: "Allah hu Akhbar",
       date: "2-3-1847",
     },
-  ];
+  ]);
+
+  const deleteFunction = (index) => {
+    let data = [...students];
+    data.splice(index, 1);
+    setStudents(data);
+  }
 
   return (
     <div className="size-full relative flex flex-col gap-5 py-4 px-4 lg:px-10">
@@ -230,10 +237,10 @@ const StudentDashboard = () => {
                 Course
               </th>
               <th
-                colSpan={2}
+                colSpan={1}
                 className="outline outline-gray-400 text-sm px-6 py-3 text-left font-medium text-gray-500 uppercase tracking-wider"
               >
-                Company name
+                Actions
               </th>
               <th className="outline outline-gray-400 text-sm px-6 py-3 text-center font-medium text-gray-500 uppercase tracking-wider">
                 status & info
@@ -257,10 +264,18 @@ const StudentDashboard = () => {
                     {course}
                   </td>
                   <td
-                    colSpan={2}
-                    className="px-6 py-4 outline outline-gray-400 text-sm whitespace-nowrap"
+                    colSpan={1}
+                    className="px-6 py-4 outline outline-gray-400 text-xl text-center whitespace-nowrap"
                   >
-                    {companyName}
+                    <span
+                      onClick={() => setEditStudentBox(true)}
+                      className="mr-10 cursor-pointer"
+                    >
+                      <i className="ri-pencil-line"></i>
+                    </span>
+                    <span className="cursor-pointer" onClick={() => deleteFunction(i)}>
+                      <i className="ri-delete-bin-6-line"></i>
+                    </span>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap outline outline-gray-400 text-sm flex justify-center items-center gap-2">
                     <span
@@ -518,16 +533,13 @@ const StudentDashboard = () => {
                         {students[msgIndex].studentArea}
                       </span>
                     </p>
-                    
+
                     <p className="py-2 sm:col-span-2 outline px-4 rounded-md flex flex-col text-sm">
                       Contact:
                       <span className="tracking-[1px] sm:text-base">
                         {students[msgIndex].contact}
                       </span>
                     </p>
-
-                    
-                    
 
                     <p className="py-2 sm:col-span-2 outline px-4 rounded-md flex flex-col text-sm">
                       Faculty:{" "}
@@ -542,8 +554,6 @@ const StudentDashboard = () => {
                         {students[msgIndex].email}
                       </span>
                     </p>
-
-                    
 
                     <p className="py-2 outline px-4 rounded-md flex flex-col text-sm">
                       Experience:{" "}
@@ -583,6 +593,193 @@ const StudentDashboard = () => {
                       </ul>
                     </div>
                   </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {editStudentBox && (
+          <motion.div
+            className="absolute excluse 300px:px-4 inset-0 size-full bg-[rgba(0,0,0,.5)] z-1 grid place-items-center"
+            initial={{
+              y: "-100%",
+            }}
+            animate={{
+              y: "0",
+            }}
+            exit={{
+              y: "100%",
+            }}
+            transition={{
+              duration: 0.5,
+              ease: [1, 0.02, 0.2, 0.76],
+            }}
+          >
+            <div className="rounded-md w-full max-w-240 outline">
+              <div className="p-4 border-b-[1px] head-line overflow-x-hidden flex justify-between items-center">
+                <h1>Edit Student Details</h1>
+                <span onClick={() => setEditStudentBox(false)}>
+                  <i className="ri-close-large-line cursor-pointer py-2 px-2 rounded-md"></i>
+                </span>
+              </div>
+              <div className="py-4 300px:px-3">
+                <div className="grid 300px:grid-cols-2 gap-4 300px:pe-4 h-full max-h-200 overflow-x-hidden overflow-y-auto set-custom-scroll p-2">
+                  <input
+                    className="outline inline overflow-hidden w-full exclusive"
+                    type="text"
+                    placeholder="Student Name"
+                  />
+                  <input
+                    className="outline inline overflow-hidden w-full exclusive"
+                    type="text"
+                    placeholder="Course"
+                  />
+                  <input
+                    className="outline inline overflow-hidden w-full exclusive"
+                    type="text"
+                    placeholder="Education"
+                  />
+                  <input
+                    className="outline inline overflow-hidden w-full exclusive"
+                    type="tel"
+                    placeholder="Student's Email"
+                  />
+                  <input
+                    className="outline inline overflow-hidden w-full exclusive"
+                    type="text"
+                    placeholder="Faculty name"
+                  />
+                  <input
+                    className="outline inline overflow-hidden w-full exclusive"
+                    type="tel"
+                    placeholder="Contact no."
+                  />
+                  <div className="px-4 outline overflow-hidden rounded-md pt-2 pb-4 grid gap-2">
+                    <h3 className="opacity-50">Student's Status</h3>
+                    <div className="flex gap-3 items-center">
+                      <input
+                        type="radio"
+                        className="w-fit"
+                        name="studentStatus"
+                        id="activeStatus"
+                      />
+                      <label htmlFor="activeStatus">Active</label>
+                    </div>
+                    <div className="flex gap-3 overflow-hidden items-center">
+                      <input
+                        type="radio"
+                        className="w-fit"
+                        name="studentStatus"
+                        id="notActiveStatus"
+                      />
+                      <label htmlFor="notActiveStatus">Not-Active</label>
+                    </div>
+                  </div>
+                  <div className="px-4 outline overflow-hidden rounded-md pt-2 pb-4 grid gap-2">
+                    <h3 className="opacity-50">Add a Note</h3>
+                    <textarea
+                      name="Add a Note"
+                      className="exclusive resize-none block outline text-sm outline-[rgba(0,0,0,.4)] w-full h-24"
+                      id="studentNote"
+                    ></textarea>
+                  </div>
+
+                  <div className="px-4 outline overflow-hidden rounded-md pt-2 pb-4 grid gap-2">
+                    <h3 className="opacity-50">Upload Student's Resume</h3>
+                    <input
+                      className="exclusive w-full outline cursor-pointer outline-[rgba(0,0,0,.4)]"
+                      type="file"
+                      name="resume"
+                      accept="application/pdf"
+                      id="studentResume"
+                    />
+                  </div>
+                  <div className="px-4 outline overflow-hidden rounded-md pt-2 pb-4 grid gap-2">
+                    <h3 className="opacity-50">Select a Area</h3>
+                    <select
+                      name="studentArea"
+                      className="outline rounded-sm py-1 px-2"
+                      id="studentArea"
+                    >
+                      <option disabled={true} defaultChecked value="">
+                        Select a area
+                      </option>
+                      <option className="text-md" value="areaName">
+                        Katargam
+                      </option>
+                      <option className="text-md" value="areaName">
+                        Mota-varracha
+                      </option>
+                      <option className="text-md" value="areaName">
+                        Uttran
+                      </option>
+                      <option className="text-md" value="areaName">
+                        Navsari
+                      </option>
+                      <option className="text-md" value="areaName">
+                        Rajkot
+                      </option>
+                      <option className="text-md" value="areaName">
+                        Hirabaugh
+                      </option>
+                    </select>
+                  </div>
+                  <div className="px-4 outline overflow-hidden rounded-md pt-2 pb-4 grid gap-2">
+                    <h3 className="opacity-50">Experience</h3>
+                    <select
+                      name="studentArea"
+                      className="outline rounded-sm py-1 px-2"
+                      id="studentArea"
+                    >
+                      <option disabled={true} defaultChecked value="">
+                        Select any one option
+                      </option>
+                      <option className="text-md" value="0m">
+                        Fresher
+                      </option>
+                      <option className="text-md" value="0-1m">
+                        0 - 1 month
+                      </option>
+                      <option className="text-md" value="2-3m">
+                        2 - 3 months
+                      </option>
+                      <option className="text-md" value="3-6m">
+                        3 - 6 months
+                      </option>
+                      <option className="text-md" value="6-8m">
+                        6 - 8 months
+                      </option>
+                      <option className="text-md" value="3-6m">
+                        8 - 12 months
+                      </option>
+                      <option className="text-md" value="1y">
+                        1 year or more
+                      </option>
+                      <option className="text-md" value="1.5y">
+                        1.5 yrs+
+                      </option>
+                      <option className="text-md" value="2y">
+                        2 yrs+
+                      </option>
+                      <option className="text-md" value="3y">
+                        3 yrs+
+                      </option>
+                    </select>
+                  </div>
+
+                  <input
+                    className="outline inline overflow-hidden w-full exclusive"
+                    type="date"
+                    placeholder="Date"
+                  />
+                  <input
+                    type="submit"
+                    value="Submit"
+                    className="py-2 300px:col-span-2"
+                  />
                 </div>
               </div>
             </div>

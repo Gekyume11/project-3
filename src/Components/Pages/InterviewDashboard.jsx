@@ -5,6 +5,7 @@ const InterviewDashboard = () => {
   const [detailBox, setDetailBox] = useState(false);
   const [msgIndex, setMsgIndex] = useState(null);
   const [addFollowUp, setAddFollowUp] = useState(false);
+  const [addInterviewBox, setInterviewBox] = useState(false);
 
   const showStudentDetail = (index) => {
     setMsgIndex(index);
@@ -72,9 +73,15 @@ const InterviewDashboard = () => {
           placeholder="Search any Student"
           className="outline w-full"
         />
-        <div>
+        <div className="flex gap-2 lg:flex-row flex-col">
           <button className="350px:w-10 w-full h-10 350px:size-10 grid place-items-center">
             <i className="ri-search-line text-lg"></i>
+          </button>
+          <button
+            className="350px:w-10 w-full h-10 350px:size-10 grid place-items-center"
+            onClick={() => setInterviewBox(true)}
+          >
+            <i className="ri-add-line"></i>
           </button>
         </div>
       </div>
@@ -83,12 +90,6 @@ const InterviewDashboard = () => {
         <table className="min-w-full divide-y outline-[2px] outline-gray-500 overflow-hidden rounded-md">
           <thead className="rounded-md headline overflow-hidden">
             <tr>
-              <th
-                colSpan={2}
-                className="outline outline-gray-500 text-sm px-6 py-3 text-left font-medium uppercase tracking-wider"
-              >
-                Student Name
-              </th>
               <th
                 colSpan={2}
                 className="outline outline-gray-500 text-sm px-6 py-3 text-left font-medium uppercase tracking-wider"
@@ -107,12 +108,6 @@ const InterviewDashboard = () => {
                   colSpan={2}
                   className="px-6 py-4 outline outline-gray-500 text-sm whitespace-nowrap"
                 >
-                  {studentName}
-                </td>
-                <td
-                  colSpan={2}
-                  className="px-6 py-4 outline outline-gray-500 text-sm whitespace-nowrap"
-                >
                   {companyName}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap outline outline-gray-500 text-sm flex justify-center items-center gap-2">
@@ -120,7 +115,7 @@ const InterviewDashboard = () => {
                     className="text-[10px] block size-3.5 rounded-full text-center capitalize outline tracking-[1px] outline-black"
                     title={status}
                     style={{
-                      background: statusColors[status]
+                      background: statusColors[status],
                     }}
                   ></span>
                   <i
@@ -200,6 +195,109 @@ const InterviewDashboard = () => {
       </AnimatePresence>
 
       <AnimatePresence mode="wait">
+        {addInterviewBox && (
+          <motion.div
+            className="absolute px-4 inset-0 size-full bg-[rgba(0,0,0,.8)] z-1 grid place-items-center"
+            initial={{
+              y: "-100%",
+            }}
+            animate={{
+              y: "0",
+            }}
+            exit={{
+              y: "100%",
+            }}
+            transition={{
+              duration: 0.5,
+              ease: [1, 0.02, 0.2, 0.76],
+            }}
+          >
+            <div className="rounded-md w-full max-w-100 outline">
+              <div className="p-4 head-line border-b-[1px] flex justify-between items-center">
+                <h1>Add a Interview</h1>
+                <span onClick={() => setInterviewBox(false)}>
+                  <i className="ri-close-large-line cursor-pointer"></i>
+                </span>
+              </div>
+              <div className="py-4 px-2">
+                <div className="grid gap-4 px-4 h-full max-h-100 overflow-y-auto set-custom-scroll p-2">
+                  <div className="px-4 outline rounded-md pt-2 pb-4 grid gap-2">
+                    <h3 className="opacity-50">Select a Student</h3>
+                    <select
+                      name="studentArea"
+                      className="outline rounded-sm py-1 px-2"
+                      id="studentArea"
+                    >
+                      <option disabled={true} defaultChecked value="">
+                        Select a Student
+                      </option>
+                      <option className="text-md" value="studName">
+                        Dhruv
+                      </option>
+                      <option className="text-md" value="studName">
+                        Dhruv
+                      </option>
+                      <option className="text-md" value="studName">
+                        Dhruv
+                      </option>
+                      <option className="text-md" value="studName">
+                        Dhruv
+                      </option>
+                    </select>
+                  </div>
+
+                  <div className="px-4 outline rounded-md pt-2 pb-4 grid gap-2">
+                    <h3 className="opacity-50">Company</h3>
+                    <select
+                      name="studentArea"
+                      className="outline rounded-sm py-1 px-2"
+                      id="studentArea"
+                    >
+                      <option disabled={true} defaultChecked value="">
+                        Select a Company
+                      </option>
+                      <option className="text-md" value="companyName">
+                        Company Name
+                      </option>
+                      <option className="text-md" value="companyName">
+                        Company Name
+                      </option>
+                      <option className="text-md" value="companyName">
+                        Company Name
+                      </option>
+                      <option className="text-md" value="companyName">
+                        Company Name
+                      </option>
+                      <option className="text-md" value="companyName">
+                        Company Name
+                      </option>
+                      <option className="text-md" value="companyName">
+                        Company Name
+                      </option>
+                      <option className="text-md" value="companyName">
+                        Company Name
+                      </option>
+                    </select>
+                  </div>
+
+                  <button
+                    onClick={() => setAddFollowUp(true)}
+                    className="btn text-md font-medium capitalize"
+                  >
+                    Add a Follow Up.
+                  </button>
+
+                  <button type="submit" className="py-2">
+                    Submit
+                  </button>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence mode="wait">
         {addFollowUp && (
           <motion.div
             className="absolute px-4 inset-0 size-full bg-[rgba(0,0,0,.8)] z-1 grid place-items-center"
@@ -214,7 +312,6 @@ const InterviewDashboard = () => {
                 <span
                   onClick={() => {
                     setAddFollowUp(false);
-                    setDetailBox(true);
                   }}
                 >
                   <i className="ri-close-large-line cursor-pointer"></i>
@@ -222,20 +319,42 @@ const InterviewDashboard = () => {
               </div>
 
               <div className="mt-4">
+                <input
+                  type="date"
+                  className="outline w-full my-2 p-1"
+                  placeholder="Date"
+                />
                 <textarea
                   className="outline w-full resize-none p-1 set-custom-scroll"
                   placeholder="Enter Follow-up"
                 ></textarea>
-                <input
-                  type="date"
-                  className="outline w-full mb-2 p-1"
-                  placeholder="Date"
-                />
+
+                <div className="px-4 outline rounded-md my-3 pt-2 pb-4 grid gap-2">
+                  <h3 className="opacity-50">Status</h3>
+                  <select
+                    name="studentArea"
+                    className="outline rounded-sm py-1 px-2"
+                    id="studentArea"
+                  >
+                    <option disabled={true} defaultChecked value="">
+                      Select a Status
+                    </option>
+                    <option className="text-md" value="statusValue">
+                      Pending
+                    </option>
+                    <option className="text-md" value="statusValue">
+                      Done
+                    </option>
+                    <option className="text-md" value="statusValue">
+                      Rejected
+                    </option>
+                  </select>
+                </div>
+
                 <button
                   type="submit"
                   onClick={() => {
                     setAddFollowUp(false);
-                    setDetailBox(true);
                   }}
                   className="mt-2 btn w-full bg-green-500 text-white rounded-md"
                 >

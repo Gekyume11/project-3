@@ -4,12 +4,26 @@ import { motion } from 'framer-motion'
 
 const Sidebar = ({ onToggle }) => {
 
-    const [isOpen, setIsOpen] = useState(false)
+    const [screenWidth, setScreenWidth] = useState(window.innerWidth)
+    const [isOpen, setIsOpen] = useState(screenWidth > 864)
+    onToggle(screenWidth > 864)
 
     const toggleSidebar = () => {
         setIsOpen(!isOpen);
-        onToggle(!isOpen); // Notify parent component (Dashboard)
+        onToggle(!isOpen); // Notify parent 
     }
+
+    useEffect(() => {
+        const handleResize = () => {
+            setScreenWidth(window.innerWidth)
+            setIsOpen(screenWidth > 864)
+            onToggle(screenWidth > 864) 
+        }
+        
+        window.addEventListener('resize', handleResize)
+
+        return () => window.removeEventListener('resize', handleResize)
+    }, [screenWidth])
 
     return (
         <motion.div className='absolute border border-t-0 overflow-hidden top-15 left-0 h-[calc(100dvh_-_60px)] w-full max-w-70 z-1'
@@ -25,7 +39,7 @@ const Sidebar = ({ onToggle }) => {
             <div className='w-full'>
                 <div className='py-2 flex border-b-1 justify-between items-center w-full'>
                     <p className='ps-3.5 text-lg'>Sidebar</p>
-                    <span className='w-10 grid place-items-center cursor-pointer' onClick={toggleSidebar}>
+                    <span className='w-10 864px:hidden grid place-items-center cursor-pointer' onClick={toggleSidebar}>
                         {isOpen ? (
                                 <i className="text-xl ri-close-large-fill"></i>
                         ) : (

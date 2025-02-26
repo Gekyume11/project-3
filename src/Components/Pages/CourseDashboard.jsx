@@ -209,67 +209,7 @@ const CourseDashboard = () => {
               </div>
               <div className="py-4 px-2">
                 <div className="grid gap-4 px-4 h-full max-h-100 overflow-y-auto set-custom-scroll p-2">
-                  <div className="px-4 outline rounded-md pt-2 pb-4 grid gap-2">
-                    <h3 className="opacity-50">Select a Student</h3>
-                    <select
-                      name="studentArea"
-                      className="outline rounded-sm py-1 px-2"
-                      id="studentArea"
-                    >
-                      <option disabled={true} defaultChecked value="">
-                        Select a Student
-                      </option>
-                      <option className="text-md" value="studName">
-                        Dhruv
-                      </option>
-                      <option className="text-md" value="studName">
-                        Dhruv
-                      </option>
-                      <option className="text-md" value="studName">
-                        Dhruv
-                      </option>
-                      <option className="text-md" value="studName">
-                        Dhruv
-                      </option>
-                    </select>
-                  </div>
-
-                  <div className="px-4 outline rounded-md pt-2 pb-4 grid gap-2">
-                    <h3 className="opacity-50">Company</h3>
-                    <select
-                      name="studentArea"
-                      className="outline rounded-sm py-1 px-2"
-                      id="studentArea"
-                    >
-                      <option disabled={true} defaultChecked value="">
-                        Select a Company
-                      </option>
-                      <option className="text-md" value="companyName">
-                        Company Name
-                      </option>
-                      <option className="text-md" value="companyName">
-                        Company Name
-                      </option>
-                      <option className="text-md" value="companyName">
-                        Company Name
-                      </option>
-                      <option className="text-md" value="companyName">
-                        Company Name
-                      </option>
-                      <option className="text-md" value="companyName">
-                        Company Name
-                      </option>
-                      <option className="text-md" value="companyName">
-                        Company Name
-                      </option>
-                      <option className="text-md" value="companyName">
-                        Company Name
-                      </option>
-                    </select>
-                  </div>
-
-                  <button onClick={() => setAddFollowUp(true)} className="btn text-md font-medium capitalize">Add a Follow Up.</button>
-
+                  <input type="text" name="courseName" placeholder="Course Name" id="courseName" />
                   <button type="submit" className="py-2">
                     Submit
                   </button>
